@@ -4,7 +4,10 @@ import Components from '../components'
 import Editor from '../editor'
 import Attribute from '../attribute'
 import View from '../view'
+import data from '../../data.json'
+// console.log(data)
 
+const lalala = 111111
 function Index() {
   return (
     // 主页
@@ -17,7 +20,7 @@ function Index() {
       <div className='middle'>
         <Editor />
         <div className='view'>
-          <View />
+          <View {...data} />
         </div>
       </div>
       {/* 右侧属性区 */}

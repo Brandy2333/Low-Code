@@ -6,20 +6,56 @@ import ReactDOM from 'react-dom/client'
 //   arr: number | string[]
 // }
 // function Component(data: data) {}
+// top:number,left:number,zindex:number
 
-function View() {
+function View(props: any) {
+  const items = {
+    top: 0,
+    left: 0,
+    zindex: 0,
+    key: ''
+  }
+  // {items.top,items.left,items.zindex,items.key }  = {props.block.top, props.block.left,props.block.zindex,props.block.key}
+  console.log(props.blocks)
+
+  // console.log(blockStyles)
+
+  const d = props.blocks.map((block: any) => {
+    const blockStyles = {
+      top: `${block.top}px`,
+      left: `${block.left}px`,
+      zIndex: `${block.zIndex}`
+    }
+    if (block.key == 'text') {
+      return (
+        <div className='' key={block.key} style={blockStyles}>
+          <p>lalala</p>
+        </div>
+      )
+    } else if (block.key == 'button') {
+      return (
+        <div className='' key={block.key} style={blockStyles}>
+          <button>lalala</button>
+        </div>
+      )
+    } else if (block.key == 'input') {
+      return (
+        <div className='' key={block.key} style={blockStyles}>
+          <input />
+        </div>
+      )
+    }
+  })
   // const style1 = 'button'
 
   // const data = []
-  // const test = ReactDOM.createRoot(
-  //   document.getElementById('root') as HTMLElement
-  // ).render(<h1>新渲染的</h1>)
 
   return (
-    <div className='App'>
-      {/* <{style1}><{style1} /> */}
-      <p>View</p>
-      <div>test</div>
+    <div
+      className='App'
+      // style={blockStyles}
+    >
+      {d}
     </div>
   )
 }
