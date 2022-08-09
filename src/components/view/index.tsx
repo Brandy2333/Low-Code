@@ -9,6 +9,9 @@ import ReactDOM from 'react-dom/client'
 // top:number,left:number,zindex:number
 
 function View(props: any) {
+  // console.log(props)
+  // const dataList: string[] = []
+  const { data, tag } = props
   const items = {
     top: 0,
     left: 0,
@@ -16,46 +19,47 @@ function View(props: any) {
     key: ''
   }
   // {items.top,items.left,items.zindex,items.key }  = {props.block.top, props.block.left,props.block.zindex,props.block.key}
-  console.log(props.blocks)
-
-  // console.log(blockStyles)
-
-  const d = props.blocks.map((block: any) => {
+  // console.log(props)
+  // const item = () => {
+  //   let block = data.blocks[0]
+  const item = data.blocks.map((block: any) => {
     const blockStyles = {
       top: `${block.top}px`,
       left: `${block.left}px`,
       zIndex: `${block.zIndex}`
     }
-    if (block.key == 'text') {
+    if (tag == '文本框') {
       return (
-        <div className='' key={block.key} style={blockStyles}>
-          <p>lalala</p>
-        </div>
+        <>
+          <div className='' key={block.key} style={blockStyles}>
+            <p>lalala</p>
+          </div>
+        </>
       )
-    } else if (block.key == 'button') {
+    } else if (tag == '按钮') {
       return (
-        <div className='' key={block.key} style={blockStyles}>
-          <button>lalala</button>
-        </div>
+        <>
+          <div className='' key={block.key} style={blockStyles}>
+            <button>lalala</button>
+          </div>
+        </>
       )
-    } else if (block.key == 'input') {
+    } else if (tag == '输入框') {
       return (
-        <div className='' key={block.key} style={blockStyles}>
-          <input />
-        </div>
+        <>
+          <div className='' key={block.key} style={blockStyles}>
+            <input />
+          </div>
+        </>
       )
     }
   })
-  // const style1 = 'button'
-
-  // const data = []
-
   return (
     <div
       className='App'
       // style={blockStyles}
     >
-      {d}
+      {item}
     </div>
   )
 }

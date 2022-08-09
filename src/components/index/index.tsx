@@ -9,18 +9,24 @@ import data from '../../data.json'
 
 const lalala = 111111
 function Index() {
+  const [tag, setTag] = useState<string>('')
+  function getComponentMsg(message: any) {
+    setTag(message)
+
+    console.log('传参:', tag)
+  }
   return (
     // 主页
     <div className='index'>
       {/* 左侧组件区 */}
       <div className='left'>
-        <Components />
+        <Components getComponentMsg={getComponentMsg} />
       </div>
       {/* 中部菜单和视图区 */}
       <div className='middle'>
         <Editor />
         <div className='view'>
-          <View {...data} />
+          <View data={data} tag={tag} />
         </div>
       </div>
       {/* 右侧属性区 */}

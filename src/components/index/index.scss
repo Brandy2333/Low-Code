@@ -10,8 +10,9 @@
     flex: 3;
     .view {
       margin-top: 0vh;
-      height: 100%;
-      overflow: scroll;
+      height: 80%;
+      overflow: hidden;
+      background-color: antiquewhite;
     }
   }
   .right {
