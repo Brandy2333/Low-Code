@@ -1,8 +1,9 @@
 import { DragEvent } from 'react'
 
 import { Component, Data } from '../../constant'
+import { events } from '../../utils/events'
 
-export function useMenuDragger(contentRef: any, setData: any) {
+export function useMenuDragger(contentRef: any, setData: any, data: Data) {
   let selectedComponent: Component | null = null
 
   // 进入元素，添加移动标识
@@ -52,6 +53,8 @@ export function useMenuDragger(contentRef: any, setData: any) {
       contentRef.current.addEventListener('dragover', dragover)
       contentRef.current.addEventListener('dragleave', dragleave)
       contentRef.current.addEventListener('drop', drop)
+      // 拖拽前发布事件
+      // events.emit('start')
     }
   }
 
@@ -61,6 +64,8 @@ export function useMenuDragger(contentRef: any, setData: any) {
       contentRef.current.removeEventListener('dragover', dragover)
       contentRef.current.removeEventListener('dragleave', dragleave)
       contentRef.current.removeEventListener('drop', drop)
+      // 拖拽后发布事件
+      // events.emit('push',data)
     }
   }
   return {

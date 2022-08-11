@@ -6,6 +6,7 @@ import { useFocus } from './useFocus'
 import EditorBlock from '../editor'
 import './index.scss'
 import { useBlockDragger } from './useBlockDragger'
+import { useCommand } from './useCommand'
 interface Porps {
   data: Data
   setData: any
@@ -25,13 +26,15 @@ const Editor: FC<Porps> = ({
   const { editorConfig } = useContext(EditorConfigContext)
   const contentRef = useRef<any>(null)
   // 自定义hook实现从菜单拖拽到内容区功能
-  const { handleDragStart, handleDragEnd } = useMenuDragger(contentRef, setData)
+  const { handleDragStart, handleDragEnd } = useMenuDragger(contentRef, setData, data)
   // 自定义hook实现单选与多选
   const { handleOnMousedown, clearSelect, focusData } = useFocus(data, setData, (e: any) => {
     mouseDown(e)
   })
   // 自定义hook实现内容区内部拖拽
   const { mouseDown } = useBlockDragger(focusData, setData)
+  // 撤销按钮
+  const { menu } = useCommand(data, setData)
 
   return (
     <div className='editor'>
@@ -54,7 +57,15 @@ const Editor: FC<Porps> = ({
       </div>
       <div className='editor-container'>
         <div className='editor-nav'>
-          nav
+          {menu.map(button => (
+            <div
+              key={button.id}
+              className='nav-operation'
+              onClick={button.handler}
+            >
+              {button.label}
+            </div>
+          ))}
         </div>
         <div className='editor-wrapper'>
           <div className='editor-content'
