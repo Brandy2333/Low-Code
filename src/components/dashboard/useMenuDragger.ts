@@ -1,8 +1,11 @@
-import { DragEvent } from 'react'
+import { DragEvent, MutableRefObject } from 'react'
 
 import { Component, Data } from '../../constant'
 
-export function useMenuDragger(contentRef: any, setData: any) {
+export function useMenuDragger(
+  contentRef: MutableRefObject<any>,
+  setData: (arg0: (data: Data) => Data) => void
+) {
   let selectedComponent: Component | null = null
 
   // 进入元素，添加移动标识

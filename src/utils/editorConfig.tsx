@@ -1,4 +1,4 @@
-import { Component, ComponentMap, EditorConfig } from "../constant"
+import { Component, ComponentMap, EditorConfig } from '../constant'
 
 const createEditorConfig: Function = (): EditorConfig => {
   const componentList: Component[] = []
@@ -12,16 +12,16 @@ const createEditorConfig: Function = (): EditorConfig => {
     }
   }
 }
-export let registerConfig = createEditorConfig()
+export let registerConfig: EditorConfig = createEditorConfig()
 registerConfig.register({
   label: '文本',
-  preview: () => "预览文本",
-  render: () => "渲染文本",
+  preview: () => '预览文本',
+  render: () => '渲染文本',
   key: 'text'
 })
 registerConfig.register({
   label: '按钮',
-  preview: () => (<button>预览按钮</button>),
-  render: () => (<button>渲染按钮</button>),
+  preview: () => <button>预览按钮</button>,
+  render: () => <button>渲染按钮</button>,
   key: 'button'
 })
