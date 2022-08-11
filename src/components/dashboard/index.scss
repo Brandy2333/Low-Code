@@ -1,0 +1,112 @@
+// 页面整体距离浏览器顶部距离
+$PaddingTop : 80px;
+// 页面两侧组件列表和属性区域宽度
+$Width: 250px;
+// 页面两侧组件列表和属性区域padding
+$Padding: 10px;
+// 不同类型字体大小
+$FontSize: (
+  small: 12px,
+  middle: 16px,
+  large: 20px
+);
+// 不同类型按钮颜色
+$ButtonType: (
+  normal:grey,
+  success:green,
+  warning: orange,
+  error: red,
+);
+
+.editor {
+  display: grid;
+  grid-template-columns: $Width 1fr $Width;
+  width: 100vw;
+  height: 100vh;
+
+  .editor-left {
+    padding: $Padding;
+    background-color: skyblue;
+
+    .logo {
+      height: $PaddingTop;
+    }
+
+    .component-list {
+      .component-list-item {
+        position: relative;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 230px;
+        height: 100px;
+        background-color: #fff;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 6px;
+        cursor: move;
+        user-select: none;
+
+        .component-item-label {
+          position: absolute;
+          top: 4px;
+          left: 4px;
+          padding: 4px;
+          border-radius: 3px;
+          font-size: 12px;
+          color: #fff;
+          background-color: darkgray;
+        }
+      }
+
+      .component-list-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        opacity: 0.2;
+      }
+    }
+  }
+
+  .editor-container {
+    display: grid;
+    height: 100vh;
+    min-width: 500px;
+    grid-template-rows: $PaddingTop 1fr;
+
+    .editor-nav {
+      background-color: saddlebrown;
+    }
+
+    .editor-wrapper {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: $Padding;
+      overflow: scroll;
+
+      .editor-content {
+        position: relative;
+        background-color: goldenrod;
+        // height: 2000px;
+        // width: 2000px;
+      }
+    }
+
+    // .editor-wrapper::-webkit-scrollbar {
+    //   width: 10px;
+    //   height: 10px;
+    // }
+  }
+
+  .editor-right {
+    padding: $Padding;
+    background-color: salmon;
+  }
+}
