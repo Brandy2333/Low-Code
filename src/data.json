@@ -1,11 +1,10 @@
 {
   "container": {
-    "width": "550px",
-    "height": "550px"
+    "width": 800,
+    "height": 2000
   },
   "blocks": [
-    { "top": 100, "left": 100, "zindex": 1, "key": "text" },
-    { "top": 200, "left": 200, "zindex": 1, "key": "button" },
-    { "top": 300, "left": 300, "zindex": 1, "key": "input" }
+    { "id": 0, "top": 100, "left": 100, "zIndex": 1, "key": "text" },
+    { "id": 1, "top": 200, "left": 200, "zIndex": 1, "key": "button" }
   ]
 }

@@ -20,11 +20,11 @@ function Index() {
     <div className='index'>
       {/* 左侧组件区 */}
       <div className='left'>
-        <Components getComponentMsg={getComponentMsg} />
+        <Components />
       </div>
       {/* 中部菜单和视图区 */}
       <div className='middle'>
-        <Editor />
+        {/* <Editor /> */}
         <div className='view'>
           <View data={data} tag={tag} />
         </div>

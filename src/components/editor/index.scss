@@ -1,0 +1,19 @@
+.editor-block {
+  position: absolute;
+}
+
+// 防止选中元素
+.editor-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// 元素被选中时样式
+.editor-block-focus::before {
+  content: '';
+  border: 2px dashed red;
+}
