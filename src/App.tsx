@@ -7,6 +7,9 @@ import './App.scss'
 // 导入TS类型
 import { Data } from './constant'
 
+import { createStore } from 'redux';
+
+import { Provider } from 'react-redux'
 export default function App() {
   // 传递数据
   const { setEditorConfig } = useContext(EditorConfigContext)

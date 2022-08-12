@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
@@ -24,6 +25,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "prettier": "^2.7.1",
+    "react-redux": "^8.0.2",
     "sass": "^1.54.0",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",
