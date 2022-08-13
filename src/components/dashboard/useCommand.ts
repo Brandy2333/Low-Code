@@ -2,6 +2,7 @@ import deepcopy from 'deepcopy'
 import { useCallback, useEffect, useState } from 'react'
 import { Data } from '../../constant'
 import { deepCompare } from '../../utils/common'
+import useDialog from '../components/dialog'
 
 interface IState {
   // 前进后退的索引值
@@ -23,7 +24,6 @@ export function useCommand(data: Data, setData: any) {
   const push = (record: Data) => {
     if (state.currentIdinx !== state.historyArray.length - 1) {
       removeHistory()
-      console.log(`remove history`)
     }
     setState((state: IState) => {
       return {
@@ -64,7 +64,6 @@ export function useCommand(data: Data, setData: any) {
 
   // 重做(ctrl+y) currentIdinx指针后移一位
   const redo = () => {
-    console.log(`redo`, state)
     // 当指针指向最后一个元素表示已经是最新状态，停止右移
     if (state.currentIdinx >= state.historyArray.length - 1) return
     setState((state) => {
@@ -92,20 +91,41 @@ export function useCommand(data: Data, setData: any) {
   const handleKeyown = (e: any) => {
     if (e.ctrlKey) {
       if (e.key === 'z') {
-        console.log(`ctrl+z`)
         undo()
       }
       if (e.key === 'y') {
-        console.log(`ctrl+y`)
         redo()
       }
     }
   }
+  // 导入json数据渲染页面
+  const onConfirm = (importData: string) => {
+    setData(JSON.parse(importData))
+  }
 
+  // 生成导入json数据页面
+  const importData = () => {
+    useDialog({
+      type: 'import',
+      title: '导入数据',
+      content: '',
+      onConfirm: onConfirm
+    })
+  }
+  // 生成导出页面，显示对应的json数据
+  const exportData = () => {
+    useDialog({
+      type: 'export',
+      title: '导出数据',
+      content: JSON.stringify(data)
+    })
+  }
   // 功能区菜单
   const menu = [
-    { id: 0, label: '撤回', handler: undo },
-    { id: 1, label: '重做', handler: redo }
+    { id: 0, label: '撤回', type: 'undo', handler: undo },
+    { id: 1, label: '重做', type: 'redo', handler: redo },
+    { id: 2, label: '导入', type: 'import', handler: importData },
+    { id: 3, label: '导出', type: 'export', handler: exportData }
   ]
 
   // 绑定键盘事件
@@ -115,6 +135,7 @@ export function useCommand(data: Data, setData: any) {
     return () => {
       document.removeEventListener('keydown', handleKeyown)
     }
+    //  这里要绑定state，否则快捷键绑定的函数handleKeyown拿不到最新的state数据
   }, [state])
   // 当data数据变化时加入进historyArray里
   useEffect(() => {

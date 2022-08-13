@@ -1,3 +1,4 @@
+import { Button } from "antd"
 import { Component, ComponentMap, EditorConfig } from "../constant"
 
 const createEditorConfig: Function = (): EditorConfig => {
@@ -21,7 +22,7 @@ registerConfig.register({
 })
 registerConfig.register({
   label: '按钮',
-  preview: () => (<button>预览按钮</button>),
-  render: () => (<button>渲染按钮</button>),
+  preview: () => (<Button type="primary">预览按钮</Button>),
+  render: () => (<Button type="primary">渲染按钮</Button>),
   key: 'button'
 })

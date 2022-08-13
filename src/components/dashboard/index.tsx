@@ -56,17 +56,19 @@ const Editor: FC<Porps> = ({
         </div>
       </div>
       <div className='editor-container'>
+        {/* 顶部菜单按钮区 */}
         <div className='editor-nav'>
           {menu.map(button => (
             <div
               key={button.id}
               className='nav-operation'
-              onClick={button.handler}
+              onClick={() => { button.handler() }}
             >
               {button.label}
             </div>
           ))}
         </div>
+        {/* 内容编辑区 */}
         <div className='editor-wrapper'>
           <div className='editor-content'
             style={contentStyle}
