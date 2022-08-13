@@ -11,7 +11,7 @@ export default function App() {
   const [state, setState] = useState<Data>(data)
   useEffect(() => {
     setEditorConfig(registerConfig)
-  }, [setEditorConfig])
+  }, [])
   // useEffect(() => {
   //   console.log(`state`,state)
   // }, [state])
