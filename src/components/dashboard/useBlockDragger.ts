@@ -1,9 +1,9 @@
-import { Block, Data } from "../../constant"
-interface IFocusData{
+import { Block, Data } from '../../constant'
+interface IFocusData {
   focus: Block[]
-  unfocus:Block[]
+  unfocus: Block[]
 }
-export function useBlockDragger(focusData:IFocusData,setData: any) {
+export function useBlockDragger(focusData: IFocusData, setData: any) {
   let dragStart: {
     startX: number
     startY: number
@@ -26,7 +26,9 @@ export function useBlockDragger(focusData:IFocusData,setData: any) {
       })
       let focusArray = focusData.focus.map((block) => block.id)
       // 未选中的block不用动
-      let restBlocks = data.blocks.filter(block => !focusArray.includes(block.id))
+      let restBlocks = data.blocks.filter(
+        (block) => !focusArray.includes(block.id)
+      )
       return {
         ...data,
         blocks: [...newFocusBlocks, ...restBlocks]

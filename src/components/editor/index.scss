@@ -15,5 +15,6 @@
 // 元素被选中时样式
 .editor-block-focus::before {
   content: '';
-  border: 2px dashed red;
+  outline: red dashed 2px;
+  // border: 2px dashed red;
 }

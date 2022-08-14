@@ -25,10 +25,6 @@ export default function App() {
   // 通过useDispatch 派发事件
   const dispatch = useAppDispatch()
 
-  // useEffect(() => {
-  //   console.log(`state`,state)
-  // }, [state])
-  // console.log(`config`, config.setEditorConfig)
 
   return (
     <>

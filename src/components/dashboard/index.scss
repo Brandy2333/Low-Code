@@ -80,7 +80,27 @@ $ButtonType: (
     grid-template-rows: $PaddingTop 1fr;
 
     .editor-nav {
-      background-color: saddlebrown;
+      background-color: rgb(194, 198, 202);
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      grid-auto-flow: column;
+
+      // grid-template-columns: 1fr;
+      .nav-operation {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.3);
+        user-select: none;
+        cursor: pointer;
+      }
+      .nav-operation:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
     }
 
     .editor-wrapper {

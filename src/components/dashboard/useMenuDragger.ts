@@ -1,6 +1,7 @@
 import { DragEvent, MutableRefObject } from 'react'
 
 import { Component, Data } from '../../constant'
+import { events } from '../../utils/events'
 
 export function useMenuDragger(
   contentRef: MutableRefObject<any>,
@@ -55,6 +56,8 @@ export function useMenuDragger(
       contentRef.current.addEventListener('dragover', dragover)
       contentRef.current.addEventListener('dragleave', dragleave)
       contentRef.current.addEventListener('drop', drop)
+      // 拖拽前发布事件
+      // events.emit('start')
     }
   }
 
@@ -64,6 +67,8 @@ export function useMenuDragger(
       contentRef.current.removeEventListener('dragover', dragover)
       contentRef.current.removeEventListener('dragleave', dragleave)
       contentRef.current.removeEventListener('drop', drop)
+      // 拖拽后发布事件
+      // events.emit('push',data)
     }
   }
   return {
