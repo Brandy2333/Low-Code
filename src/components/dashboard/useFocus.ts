@@ -7,7 +7,7 @@ export function useFocus(data: Data, setData: any, callback: any) {
     const focus: Block[] = []
     const unfocus: Block[] = []
     data.blocks.forEach((block) => {
-      ;(block.focus ? focus : unfocus).push(block)
+      (block.focus ? focus : unfocus).push(block)
     })
     return { focus, unfocus }
   }, [data.blocks])

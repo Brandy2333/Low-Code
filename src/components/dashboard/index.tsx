@@ -28,7 +28,7 @@ const Editor: FC<Porps> = ({
   // 自定义hook实现从菜单拖拽到内容区功能
   const { handleDragStart, handleDragEnd } = useMenuDragger(contentRef, setData, data)
   // 自定义hook实现单选与多选
-  const { handleOnMousedown, clearSelect, focusData } = useFocus(data, setData, (e: any) => {
+  const { handleOnMousedown, clearSelect, focusData } = useFocus(data, setData, (e: MouseEvent) => {
     mouseDown(e)
   })
   // 自定义hook实现内容区内部拖拽

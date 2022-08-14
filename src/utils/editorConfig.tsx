@@ -13,11 +13,11 @@ const createEditorConfig: Function = (): EditorConfig => {
     }
   }
 }
-export let registerConfig = createEditorConfig()
+export let registerConfig: EditorConfig = createEditorConfig()
 registerConfig.register({
   label: '文本',
-  preview: () => "预览文本",
-  render: () => "渲染文本",
+  preview: () => '预览文本',
+  render: () => '渲染文本',
   key: 'text'
 })
 registerConfig.register({

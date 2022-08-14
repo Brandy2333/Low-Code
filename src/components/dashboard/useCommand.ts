@@ -98,6 +98,83 @@ export function useCommand(data: Data, setData: any) {
       }
     }
   }
+
+  // 将所有选中元素置顶
+  const placedAtTop = () => {
+    // 在所有元素中找到zIndex最大值maxzIndex
+    let maxzIndex = -Infinity
+    data.blocks.forEach((block) => {
+      if (block.zIndex > maxzIndex) {
+        maxzIndex = block.zIndex
+      }
+    })
+    // 将所有选中元素zIndex置为maxzIndex+1
+    setData((data: Data) => {
+      let newBlocks = data.blocks.map((block) => {
+        if (block.focus) {
+          block.zIndex = maxzIndex + 1
+        }
+        return block
+      })
+      return {
+        ...data,
+        blocks: newBlocks
+      }
+    })
+    // console.log(`data`, data)
+  }
+
+  // 将选中元素置底
+  // 置底的时候可能会出现当前minIndex已经为0的情况，这种情况下无法设置当前元素zIndex为minIndex-1，需要让其他元素的zIndex增加1
+  const placedAtBottom = () => {
+    // 在所有元素中找到zIndex最小值minzIndex
+    let minzIndex = Infinity
+    data.blocks.forEach((block) => {
+      if (block.zIndex < minzIndex) {
+        minzIndex = block.zIndex
+      }
+    })
+    // minzIndex等于0，其他元素zIndex加1
+    if (minzIndex === 0) {
+      setData((data: Data) => {
+        let newBlocks = data.blocks.map((block) => {
+          if (!block.focus) {
+            block.zIndex = block.zIndex + 1
+          }
+          return block
+        })
+        return {
+          ...data,
+          blocks: newBlocks
+        }
+      })
+    } else {
+      setData((data: Data) => {
+        let newBlocks = data.blocks.map((block) => {
+          if (block.focus) {
+            block.zIndex = minzIndex - 1
+          }
+          return block
+        })
+        return {
+          ...data,
+          blocks: newBlocks
+        }
+      })
+    }
+  }
+
+  // 删除选中block
+  const deleteBlock = () => {
+    setData((data: Data) => {
+      let newBlocks = data.blocks.filter((block) => !block.focus)
+      return {
+        ...data,
+        blocks: newBlocks
+      }
+    })
+  }
+
   // 导入json数据渲染页面
   const onConfirm = (importData: string) => {
     setData(JSON.parse(importData))
@@ -112,6 +189,7 @@ export function useCommand(data: Data, setData: any) {
       onConfirm: onConfirm
     })
   }
+
   // 生成导出页面，显示对应的json数据
   const exportData = () => {
     useDialog({
@@ -120,12 +198,16 @@ export function useCommand(data: Data, setData: any) {
       content: JSON.stringify(data)
     })
   }
+
   // 功能区菜单
   const menu = [
     { id: 0, label: '撤回', type: 'undo', handler: undo },
     { id: 1, label: '重做', type: 'redo', handler: redo },
-    { id: 2, label: '导入', type: 'import', handler: importData },
-    { id: 3, label: '导出', type: 'export', handler: exportData }
+    { id: 2, label: '置顶', type: 'top', handler: placedAtTop },
+    { id: 3, label: '置底', type: 'bottom', handler: placedAtBottom },
+    { id: 4, label: '删除', type: 'delete', handler: deleteBlock },
+    { id: 5, label: '导入', type: 'import', handler: importData },
+    { id: 6, label: '导出', type: 'export', handler: exportData }
   ]
 
   // 绑定键盘事件
