@@ -18,6 +18,7 @@ const Editor: FC<Porps> = ({
   // console.log(`data`, data)
   const { height, width } = data.container
   let { blocks } = data
+  // 修改useMemo computute计算
   const contentStyle = useMemo(() => ({
     height,
     width

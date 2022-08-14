@@ -17,12 +17,19 @@ export default function App() {
   const [state, setState] = useState<Data>(data)
   useEffect(() => {
     setEditorConfig(registerConfig)
+
   }, [setEditorConfig])
 
   // 通过useSelector直接拿到store中定义的value
   const count = useAppSelector((state) => state.counter.value)
   // 通过useDispatch 派发事件
   const dispatch = useAppDispatch()
+
+  // useEffect(() => {
+  //   console.log(`state`,state)
+  // }, [state])
+  // console.log(`config`, config.setEditorConfig)
+
   return (
     <>
       <Editor data={state} setData={setState} />
