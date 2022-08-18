@@ -21,13 +21,13 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+    incrementByAmount: (state, action: PayloadAction<number> ) => {
+      state.value = action.payload
     },
   },
 });
 // 导出加减的方法
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-export const selectCount = (state: RootState) => state.counter.value
+export const selectCount = (state: RootState) => state.counter1.value
 // 默认导出
 export default counterSlice.reducer;

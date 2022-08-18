@@ -12,6 +12,6 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
-  </EditorConfigContextProvider>
+   </EditorConfigContextProvider>
   // </React.StrictMode>
 )

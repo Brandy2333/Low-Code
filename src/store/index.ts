@@ -1,15 +1,22 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./slice/counter";
+import { configureStore } from '@reduxjs/toolkit'
+import dataSlice from './slice/data'
+import { EditorConfig } from '../constant/index'
+import counterSlice from './slice/counter'
+// import counter from './slice/counter'
 
+interface IProps {
+  children: any
+}
 // configureStore创建一个redux数据
 const store = configureStore({
   // 合并多个Slice
   reducer: {
-    counter: counterSlice
-  },
-});
+    data: dataSlice,
+    counter1: counterSlice
+  }
+})
 
-export default store;
+export default store
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

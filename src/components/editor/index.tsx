@@ -10,10 +10,17 @@ import React, {
 import { Block, Data } from '../../constant'
 import { EditorConfigContext } from '../../context/editorConfig'
 import './index.scss'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import {
+  updateAttributeAlignCenter,
+  updateAttributeLeft,
+  updateAttributeTop
+} from '../../store/slice/data'
+
 interface Porps {
   block: Block
   className: string
-  setData: any
+  setData?: any
   onMouseDown: MouseEventHandler<HTMLDivElement>
 }
 
@@ -69,3 +76,53 @@ const EditorBlock: FC<Porps> = ({
   )
 }
 export default EditorBlock
+
+export const EditorBlock1: FC<Porps> = ({
+  block,
+  className,
+  // draggable,
+  onMouseDown
+}): ReactElement => {
+  let { top, left, zIndex, key } = block
+  const blockStyle = useMemo(
+    () => ({
+      top: `${top}px`,
+      left: `${left}px`,
+      zIndex
+    }),
+    [top, left, zIndex]
+  )
+  const blockRef = useRef<any>(null)
+  const { editorConfig } = useContext(EditorConfigContext)
+  const component = editorConfig?.componentListMap?.[key]
+  const renderComponent = component?.render()
+
+  const data = useAppSelector((state) => state.data.blocks)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    let { offsetWidth, offsetHeight } = blockRef.current
+    if (block.alignCenter) {
+      // 设置依据鼠标位置偏移
+      data.map((tempBlock, index) => {
+        if (tempBlock.id === block.id && block.alignCenter) {
+          let left = parseInt(offsetWidth),
+            top = parseInt(offsetHeight)
+          dispatch(updateAttributeLeft({ index, left }))
+          dispatch(updateAttributeTop({ index, top }))
+          dispatch(updateAttributeAlignCenter(index))
+        }
+      })
+    }
+  }, [])
+  return (
+    <div
+      className={`editor-block ${className}`}
+      style={blockStyle}
+      ref={blockRef}
+      // draggable
+      onMouseDown={onMouseDown}
+    >
+      {renderComponent}
+    </div>
+  )
+}

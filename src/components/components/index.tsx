@@ -14,8 +14,8 @@ interface Block {
   key: string
 }
 
-// // 列表区显示所有的物料
-// // 注册函数
+// 列表区显示所有的物料
+// 注册函数
 function createEditorConfig() {
   const componentList: any[] = []
   const conponentMap: any = {}
